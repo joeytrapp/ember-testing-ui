@@ -1,0 +1,60 @@
+#qunit {
+	display: none;
+	background: white;
+	z-index: 9999;
+	position: absolute;
+	top: 65px;
+	right: 20px;
+	bottom: 20px;
+	left: 20px;
+	overflow: scroll;
+	border: 1px solid #0d3349;
+	border-radius: 6px;
+	box-shadow: 0 0 30px black;
+}
+#suite-toggle {
+	position: absolute;
+	top: 6px;
+	right: 10px;
+}
+#ember-testing-ui {
+	font-family: Menlo, Monaco, monospace;
+	font-size: 12px;
+	font-weight: bold;
+	min-height: 35px;
+	background-color: black;
+	border-top: 5px solid yellow;
+	padding: 5px;
+	color: #CCC;
+	position: relative;
+}
+#ember-testing-ui.passed {
+	border-color: lime;
+}
+#ember-testing-ui .pass {
+	color: lime;
+}
+#ember-testing-ui.failed {
+	border-color: red;
+}
+#ember-testing-ui .fail {
+	color: red;
+}
+#ember-testing-ui-tests {
+	min-height: 14px;
+}
+#ember-testing-ui-summary {
+	padding-top: 5px;
+	font-size: 14px;
+	font-family: Myriad Set, Helvetica Neue, arial, sans-serif;
+	min-height: 14px;
+}
+
+#ember-testing-ui-container {
+	width: 100%;
+	border-top: 2px solid white;
+}
+#ember-testing-ui-app {
+	border-top: 2px solid #CCC;
+	zoom: 100%;
+}

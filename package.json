@@ -1,0 +1,24 @@
+{
+  "name": "ember-testing-ui",
+  "version": "1.0.0",
+  "description": "A JS and CSS file to be included with your QUnit test runner. It modifies the look of the the test runner to make integration tests using ember-testing very pleasant.",
+  "main": "Gruntfile.js",
+  "private": true,
+  "scripts": {
+    "test": "grunt lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joeytrapp/ember-testing-ui.git"
+  },
+  "author": "Joey Trapp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joeytrapp/ember-testing-ui/issues"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0"
+  }
+}
