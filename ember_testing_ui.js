@@ -71,6 +71,7 @@ window.EmberTestingUI = (function() {
     ].join(' ');
 
     this.message(pre + ' ' + msg, function() {
+      this.summary.removeClass();
       this.results.removeClass().addClass(result);
     }.bind(this));
   };
@@ -79,21 +80,21 @@ window.EmberTestingUI = (function() {
     this.tally.total += 1;
     this.tally.passed += 1;
     this.report(this.span('.', 'pass', msg));
-    this.summary.addClass('pass');
+    this.summary.removeClass().addClass('pass');
   };
 
   UITestRunner.prototype.failure = function(msg) {
     this.tally.total += 1;
     this.tally.failed += 1;
     this.report(this.span('F', 'fail', msg));
-    this.summary.addClass('fail');
+    this.summary.removeClass().addClass('fail');
   };
 
   UITestRunner.prototype.pending = function(msg) {
     this.tally.total += 1;
     this.tally.pending += 1;
     this.report(this.span('?', 'pending', msg));
-    this.summary.addClass('pending');
+    this.summary.removeClass().addClass('pending');
   };
 
   UITestRunner.prototype.span = function(content, klass, title) {
