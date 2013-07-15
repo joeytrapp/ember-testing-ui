@@ -4,7 +4,7 @@ A JS and CSS file to be included with your QUnit test runner. It modifies the lo
 
 ## Installation
 
-Submodule the project or download the `ember_testing_ui.js` and `ember_testing_ui.css` files. Then include the js and css files in the test runner markup. The `ember_testing_ui.js` needs to be included before your test helper/tests js files, and after your Ember.js application.
+Submodule the project or download the `ember_testing_ui.js` and `ember_testing_ui.css` files. Then include the js and css files in the test runner markup. The `ember_testing_ui.js` needs to be included before your test helper/tests js files.
 
 ## Usage
 
@@ -48,5 +48,5 @@ To run the examples, clone the repository and open the `examples/*.html` files i
 
 ## Thanks!
 
-Thank you to [John Allison (@jrallison)](https://twitter.com/jrallison) and his [blog post](https://medium.com/look-what-i-made/424962fa62ff) which inspired this work. Also thanks to [Erik Bryn](https://twitter.com/ebryn) and anyone else who has helped put ember-testing together.
+Thank you to [John Allison (@jrallison)](https://twitter.com/jrallison) and his [blog post](https://medium.com/look-what-i-made/424962fa62ff) which inspired this work. Also thanks to [Erik Bryn (@ebryn)](https://twitter.com/ebryn) and anyone else who has helped put ember-testing together.
 
