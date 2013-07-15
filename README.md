@@ -11,12 +11,11 @@ Submodule the project or download the `ember_testing_ui.js` and `ember_testing_u
 In your test helper file, initialize `EmberTestingUI`.
 
 	// test_helper.js
+	
+	// Registed test helpers
+	// Ember.Test.registerHelper(...);
 
 	EmberTestingUI.init(App); // App is your Ember application
-
-	function exists(selector, context) {
-		return !!find(selector, context).length;
-	}
 
 The initialization process will build the needed markup and setup the Ember app for testing. It also sets the `rootElement` property on your app. If you need to use a specific root element, you can configure `EmberTestingUI` before initialization.
 
