@@ -30,6 +30,12 @@ or
 
 In both cases, `EmberTestingUI` will create the dom element with the correct id for you, and assign that id as the `rootElement` for the app.
 
+In the browser, you will see a 'QUnit' link in the top right corner. Clicking this will show the original qunit test runner with more details about the failures and links to run individual tests.
+
+## Support
+
+Currently only QUnit is supported, and I am looking into Mocha support.
+
 ## Examples
 
 To run the examples, clone the repository and open the `examples/*.html` files in the browser 
@@ -39,4 +45,8 @@ To run the examples, clone the repository and open the `examples/*.html` files i
 ![Failing tests](http://imgur.com/Cw40xkh.png)
 
 ![Mixed pass and fail tests](http://imgur.com/phzTFZ8.png)
+
+## Thanks!
+
+Thank you to [John Allison (@jrallison)](https://twitter.com/jrallison) and his [blog post](https://medium.com/look-what-i-made/424962fa62ff) which inspired this work. Also thanks to [Erik Bryn](https://twitter.com/ebryn) and anyone else who has helped put ember-testing together.
 
