@@ -119,6 +119,11 @@ window.EmberTestingUI = (function() {
     this.results = $('#' + this.resultsId);
     this.tests   = $('#' + this.testsId);
     this.summary = $('#' + this.summaryId);
+
+    this.results.on('click', function(e) {
+      e.preventDefault();
+      return false;
+    });
   };
 
   UITestRunner.prototype.addMarkup = function() {
@@ -147,9 +152,11 @@ window.EmberTestingUI = (function() {
   };
 
   QUnitSuite.prototype.integrate = function() {
-    this.runner.results.append($('<a>').attr('id', 'suite-toggle').text('QUnit'));
-    $('#suite-toggle').on('click', function() {
+    this.runner.results.append($('<a>').attr({'id': 'suite-toggle', 'href': '#'}).text('QUnit'));
+    $('#suite-toggle').on('click', function(e) {
+      e.preventDefault();
       $('#qunit').toggle();
+      return false;
     });
 
     QUnit.config.hidepassed = true;
