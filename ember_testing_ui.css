@@ -1,4 +1,4 @@
-#qunit {
+#mocha, #qunit {
 	display: none;
 	background: white;
 	z-index: 9999;
@@ -11,6 +11,10 @@
 	border: 1px solid #0d3349;
 	border-radius: 6px;
 	box-shadow: 0 0 30px black;
+	margin: 0 !important;
+}
+#mocha-stats {
+	position: absolute;
 }
 #suite-toggle {
 	position: absolute;

@@ -1,5 +1,5 @@
 window.EmberTestingUI = (function() {
-  var EmberTestingUI, UITestRunner, QUnitSuite, NullSuite;
+  var EmberTestingUI, UITestRunner, BaseSuite, QUnitSuite, MochaSuite, NullSuite;
 
   EmberTestingUI = function(config) {
     this.runner = new UITestRunner(config);
@@ -42,6 +42,8 @@ window.EmberTestingUI = (function() {
     var ret;
     if (window.QUnit) {
       ret = new QUnitSuite(this);
+    } else if (window.mocha) {
+      ret = new MochaSuite(this);
     } else {
       ret = new NullSuite(this);
     }
@@ -145,19 +147,29 @@ window.EmberTestingUI = (function() {
 
   NullSuite.prototype.integrate = function() {};
 
-  // QUnitSuite used when window.QUnit exists and is used
-  // to integrate into QUnit callbacks.
-  QUnitSuite = function(runner) {
+  BaseSuite = function(runner) {
     this.runner = runner;
   };
 
-  QUnitSuite.prototype.integrate = function() {
-    this.runner.results.append($('<a>').attr({'id': 'suite-toggle', 'href': '#'}).text('QUnit'));
+  BaseSuite.prototype.addToggle = function(selector, text) {
+    this.runner.results.append($('<a>').attr({'id': 'suite-toggle', 'href': '#'}).text(text));
     $('#suite-toggle').on('click', function(e) {
       e.preventDefault();
-      $('#qunit').toggle();
+      $(selector).toggle();
       return false;
     });
+  }
+
+  // QUnitSuite used when window.QUnit exists and is used
+  // to integrate into QUnit callbacks.
+  QUnitSuite = function(runner) {
+    BaseSuite.call(this, runner);
+  };
+  QUnitSuite.prototype = Object.create(BaseSuite.prototype);
+  QUnitSuite.prototype.constructor = QUnitSuite;
+
+  QUnitSuite.prototype.integrate = function() {
+    this.addToggle('#qunit', 'QUnit');
 
     QUnit.config.hidepassed = true;
 
@@ -184,7 +196,53 @@ window.EmberTestingUI = (function() {
     }.bind(this));
   };
 
+  MochaSuite = function(runner) {
+    BaseSuite.call(this, runner);
+  };
+  MochaSuite.prototype = Object.create(BaseSuite.prototype);
+  MochaSuite.prototype.constructor = MochaSuite;
+
+  MochaSuite.prototype.integrate = function() {
+    var runner = this.runner,
+        start  = new Date().valueOf();
+
+    function buildName(base, suite) {
+      if (suite.root) return base;
+      return buildName(suite.title.trim() + ' ' + base.trim(), suite.parent);
+    }
+
+    this.addToggle('#mocha', 'Mocha');
+
+    mocha.suite.beforeAll(function() {
+      runner.start();
+    });
+
+    mocha.suite.beforeEach(function() {
+      runner.message(buildName('', this.currentTest));
+    });
+
+    mocha.suite.afterEach(function() {
+      var title = buildName('', this.currentTest);
+      switch (this.currentTest.state) {
+        case 'passed':
+          runner.pass(title);
+          break;
+        case 'failed':
+          runner.fail(title);
+          break;
+        case 'pending':
+          runner.pending(title);
+          break;
+      }
+    });
+
+    mocha.suite.afterAll(function() {
+      var end = new Date().valueOf(),
+          pre = ["Tests completed in", (end - start) / 1000, "seconds."].join(' ');
+      runner.finish(pre);
+    });
+  };
+
   // Returning the EmberTestingUI class to be the public api
   return EmberTestingUI;
 })();
-
