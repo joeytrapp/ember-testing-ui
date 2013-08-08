@@ -158,6 +158,9 @@ window.EmberTestingUI = (function() {
       $(selector).toggle();
       return false;
     });
+    if (/autoshow=true/.test(window.location)) {
+      $('#suite-toggle').click();
+    }
   }
 
   // QUnitSuite used when window.QUnit exists and is used
